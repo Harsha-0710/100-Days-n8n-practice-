@@ -1,0 +1,52 @@
+{
+  "name": "Day-1",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "hello-world",
+        "options": {
+          "responseData": "Hello World from Harshavardhan, this message is from n8n worflow automation. Learn n8n with me",
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "GET, POST, OPTIONS"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cfe00e82-2db8-447c-bfd5-db2d75f16bb2",
+      "name": "Webhook",
+      "webhookId": "fa9a34b2-4aae-4ae8-9929-7be5f59f4a14"
+    }
+  ],
+  "pinData": {},
+  "connections": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "ca547255-b2f9-46a0-b8d3-f54ff7a71971",
+  "meta": {
+    "instanceId": "3b1f4721be358fb59fcf3ce64aa55e2b72b3ce8f3100f26e34145469973fc87e"
+  },
+  "id": "rzqlunSxrX1CjcoI",
+  "tags": []
+}

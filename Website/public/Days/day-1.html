@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 1</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #222;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* Header */
+        .header {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .day {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 5px 0;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 35px;
+        }
+
+        section h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4aa3df;
+            padding-left: 10px;
+        }
+
+        section p {
+            font-size: 16px;
+            color: #444;
+        }
+
+        /* Components base */
+        .components {
+            min-height: 80px;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            color: #777;
+            font-style: italic;
+        }
+
+        /* Webhook demo */
+        .webhook-demo {
+            display: flex;
+            align-items: center; /* FIX: vertical alignment */
+            gap: 14px;
+            font-style: normal;
+        }
+
+        .webhook-btn {
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            background-color: #4aa3df;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .webhook-btn:hover {
+            background-color: #1a73e8;
+            transform: translateY(-1px);
+        }
+
+        .webhook-btn:active {
+            transform: translateY(0);
+        }
+
+        .webhook-result {
+            font-size: 14px;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        /* Repo */
+        .repo {
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+        }
+
+        .repo a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .repo a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="day">Day 1</div>
+        <div class="title">Webhook Hello World Setup</div>
+        <div class="date">01 January 2026</div>
+    </header>
+
+    <!-- Description -->
+    <section>
+        <h3>Task Description</h3>
+        <p>
+            A webhook listens for an incoming HTTP request and instantly triggers a workflow.
+            When the webhook URL is accessed, it responds immediately with “Hello World”.
+        </p>
+    </section>
+
+    <!-- Web Components -->
+    <section>
+        <h3>Web Components</h3>
+        <div class="components webhook-demo">
+            <button class="webhook-btn" onclick="callWebhook()">Call Webhook</button>
+            <p id="result" class="webhook-result">Waiting for response...</p>
+        </div>
+    </section>
+
+    <!-- Repo -->
+    <section class="repo">
+        <h3>GitHub Repository</h3>
+        <p>
+            🔗 <a href="https://github.com/your-username/day-1-webhook" target="_blank">
+                https://github.com/your-username/day-1-webhook
+            </a>
+        </p>
+    </section>
+
+</div>
+
+<script>
+function callWebhook() {
+  const btn = document.querySelector(".webhook-btn");
+  const result = document.getElementById("result");
+
+  btn.disabled = true;
+  btn.innerText = "Calling...";
+  result.innerText = "Waiting for response...";
+  result.style.color = "#555";
+
+  fetch("https://a0697fb1d417.ngrok-free.app/webhook/hello-world", {
+    headers: {
+      "ngrok-skip-browser-warning": "true"
+    }
+  })
+    .then(res => res.text())
+    .then(data => {
+      result.innerText = data;
+      result.style.color = "#2e7d32";
+    })
+    .catch(() => {
+      result.innerText = "Error calling webhook";
+      result.style.color = "#d32f2f";
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.innerText = "Call Webhook";
+    });
+}
+
+</script>
+
+</body>
+</html>
